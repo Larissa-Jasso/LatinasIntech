@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+
+.ant-layout {
+  min-height: 100vh !important;
+  background: #f4f4f4 !important;
+  font-family: "Raleway";
+}
+.background-header {
+  background: #fff !important;
+}
+.first-header {
+  line-height: 30px !important;
+  height: 30px !important;
+  border-bottom: 0.5px solid #dfdddd;
+}
+.second-header {
+  font-weight: bold;
+  align-items: flex-end;
+}
+.menu {
+  flex-direction: row-reverse !important;
+  background: transparent !important;
+  border-bottom: none !important;
+}
+.btn-donate {
+  background-color: #ea99a3 !important;
+  border-color: #ea99a3 !important;
+  border-radius: 3px !important;
+}
+
+.logo {
+  float: left;
+  width: 100px !important;
+  height: 100px !important;
+}
