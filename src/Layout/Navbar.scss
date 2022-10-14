@@ -38,3 +38,13 @@
   height: 100px !important;
   margin-top: 7px !important;
 }
+
+.content{
+  padding: 50px;
+} 
+
+@media (max-width: 425px) {
+  .content{
+    padding: 20px;
+  } 
+}

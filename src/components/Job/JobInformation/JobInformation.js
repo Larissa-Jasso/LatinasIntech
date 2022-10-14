@@ -8,7 +8,7 @@ export default function JobInformation(props) {
   const { title,subtitle,text } = props;
 
   return (
-    <Row gutter={[12, 12]} style={{textAlign:"left"}}>
+    <Row gutter={[12, 12]} className="information-align">
       <Col xs={24} md={6} xl={4}>
         <Avatar shape="square" size={64} icon={<FileProtectOutlined />} />
       </Col>

@@ -74,9 +74,7 @@ export default function Navbar() {
         </Menu>
       </Header>
       <Content
-        style={{
-          padding: "50px",
-        }}
+       className="content"
       >
         <Outlet />
       </Content>

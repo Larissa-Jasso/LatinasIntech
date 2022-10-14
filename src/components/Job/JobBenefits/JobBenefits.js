@@ -15,7 +15,7 @@ export default function JobBenefits(props) {
             }else if(b.name == "paidparentalleave"){
                 image = "PPL.png";
             }else if(b.name == "latinxintech"){
-                image = "PLt.png";
+                image = "PLT.png";
             }else if(b.name == "lgbtqierg-2"){
                 image = "PLGTBIQ.png";
             }else if(b.name == "unlimitedvacation"){

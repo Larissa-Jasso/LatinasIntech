@@ -13,3 +13,11 @@
      border-bottom: 1px solid #c4c4c4;
      background: transparent !important;
   }
+
+  @media (min-width: 768px) {
+    .information-align{
+      text-align: left;
+    }
+  }
+  
+  

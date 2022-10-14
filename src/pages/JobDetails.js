@@ -67,7 +67,7 @@ export default function JobDetails() {
       <Col xs={24}>
         <Title className="title-job-details">{data.title}</Title>
       </Col>
-      <Col xs={24} md={12}>
+      <Col xs={24} md={12} style={{textAlign:"center"}}> 
         <JobInformation
           title={data.company}
           subtitle={data.area}
@@ -94,10 +94,10 @@ export default function JobDetails() {
         )}
       </Col>
       <Col xs={24}>
-        <Row gutter={[12, 12]}>
-          <Col xs={24} md={8}>
-            <Row gutter={[12, 12]}>
-              <Col xs={24}>
+        <Row gutter={[12, 12]} justify="center" align="middle">
+          <Col xs={24} md={8} className="alert-specs">
+            <Row gutter={[12, 12]} align="middle">
+              <Col xs={24} >
                 <JobSpecs specs={data} />
               </Col>
               <Col xs={24}>
@@ -123,7 +123,7 @@ export default function JobDetails() {
         </Row>
       </Col>
       <Col xs={24}>
-        <Row gutter={[12, 12]}>
+        <Row gutter={[12, 12]} align="middle">
           <Col xs={24} md={12}>
             <Card className="card-job">
               <Row gutter={[12, 12]}>
