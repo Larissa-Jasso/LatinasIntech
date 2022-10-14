@@ -84,11 +84,15 @@ export default function JobDetails() {
                 <JobSpecs specs={data} />
               </Col>
               <Col xs={24}>
-                
                 <Alert />
               </Col>
               <Col xs={24}>
-                <Button className="btn-apply" size="large" type="primary" onClick={()=>message.success("Applied")}>
+                <Button
+                  className="btn-apply"
+                  size="large"
+                  type="primary"
+                  onClick={() => message.success("Applied")}
+                >
                   Apply
                 </Button>
               </Col>
@@ -105,25 +109,30 @@ export default function JobDetails() {
         <Row gutter={[12, 12]}>
           <Col xs={24} md={12}>
             <Card className="card-job">
-              <About title="About The Company" />
+              <Row gutter={[12, 12]}>
+                <Col xs={24}>
+                  <About title="About The Company" />
+                </Col>
+                <Col xs={24}>
+                  <Button
+                    className="btn-profile"
+                    size="large"
+                    onClick={() => message.success("See company profile")}
+                  >
+                    See Company profile
+                  </Button>
+                </Col>
+              </Row>
             </Card>
           </Col>
+
           <Col xs={24} md={12}>
-            <Row gutter={[12, 12]}>             
-              <Col xs={24}>
-                <Carrousel/>
-              </Col>
-              <Col xs={24}>
-                <Button className="btn-profile" size="large" onClick={()=>message.success("See company profile")}>
-                See Company profile
-                </Button>
-              </Col>
-            </Row>
+            <Carrousel />
           </Col>
         </Row>
       </Col>
       <Col xs={24}>
-       <SimilarJobs area={data.area} id={data.id} />
+        <SimilarJobs area={data.area} id={data.id} />
       </Col>
     </Row>
   );

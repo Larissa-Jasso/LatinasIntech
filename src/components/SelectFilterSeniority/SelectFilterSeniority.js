@@ -2,7 +2,7 @@ import { Select } from 'antd';
 import React, { useEffect, useState } from 'react'
 
 export default function SelectFilterSeniority(props) {
-    const { data,setSearchSeniority,setCurrentPage} = props;
+    const { data,setSearchSeniority,setCurrentPage,searchSeniority} = props;
     const filter = [];
     const myObj = [];
     const [array, setArray] = useState([]);
@@ -35,7 +35,7 @@ export default function SelectFilterSeniority(props) {
         style={{
           width: "100%",
         }}
-        placeholder="Please select an seniority option(s)"
+        placeholder="Select an seniority option(s)"
           onChange={handleChange}
       >
         {array.map((f, index) => {

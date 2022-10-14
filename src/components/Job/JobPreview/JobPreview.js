@@ -12,7 +12,7 @@ export default function JobPreview(props) {
     <Card className="card-preview">
       <Row justify="center" gutter={[12,12]}>
         <Col xs={24} md={12} lg={10} xl={10}>
-         <JobInformation title={data.area} subtitle={data.seniority}  text={data.title} />
+         <JobInformation title={data.title} subtitle={data.company}  text={data.time} />
         </Col>
         <Col xs={24} md={6} lg={4} xl={7}>
           <JobSpecs specs={data} />

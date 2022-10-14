@@ -53,15 +53,14 @@ export default function SelectFilterPerks(props) {
       style={{
         width: "100%",
       }}
-      placeholder="Please select an perk option(s)"
+      placeholder="Select an perk option(s)"
       onChange={handleChange}
-      size="large"
     >
       {array.map((f, index) => {
         return (
           <Option key={index} value={f.value}>
            <Avatar 
-                src={<Image src={`/images/${f.image}`} preview={false} style={{ width: 25 }} />}
+                src={<Image src={`/images/${f.image}`} preview={false} style={{ width: 20 }} />}
                 key={index}
               /> &nbsp;
               <span>{f.value} </span>

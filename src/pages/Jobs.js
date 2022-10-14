@@ -3,14 +3,14 @@ import {
   Button,
   Card,
   Col,
+  Divider,
   Empty,
   Input,
   Pagination,
   Row,
-  Select,
   Skeleton,
+  Typography,
 } from "antd";
-import JobPreview from "../components/Job/JobPreview";
 import JobList from "../components/Job/JobList";
 import SelectFilter from "../components/SelectFilterArea";
 import SelectFilterSeniority from "../components/SelectFilterSeniority";
@@ -18,10 +18,11 @@ import SelectFilterPerks from "../components/SelectFilterPerks";
 import SelectFilterLocation from "../components/SelectFilterLocation";
 
 export default function Jobs() {
+  const { Title, Text } = Typography;
   const [jobs, setJobs] = useState([]);
   const [load, setLoad] = useState(true);
   const [searchArea, setSearchArea] = useState("");
-  const [searchSeniority, setSearchSeniority] = useState("");
+  const [searchSeniority, setSearchSeniority] = useState([]);
   const [keyWords, setKeyWords] = useState("");
   const [searchPerk, setSearchPerk] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
@@ -52,11 +53,12 @@ export default function Jobs() {
   const onChange = (page) => {
     setCurrentPage(page);
   };
-  const todosData = useMemo(() => {
-    let computedTodos;
+
+  const JobsData = useMemo(() => {
+    let filterJobs = jobs;
 
     if (searchArea.length > 0) {
-      computedTodos = jobs.filter((stra) =>
+      filterJobs = filterJobs.filter((stra) =>
         searchArea.some((value) =>
           stra.area.toLowerCase().includes(value.toLowerCase())
         )
@@ -64,19 +66,19 @@ export default function Jobs() {
     }
 
     if (searchSeniority.length > 0) {
-      computedTodos = jobs.filter((str) =>
+      filterJobs = filterJobs.filter((str) =>
         searchSeniority.some((value) =>
           str.seniority.toLowerCase().includes(value.toLowerCase())
         )
       );
     }
-    if (keyWords !== "") {
-      computedTodos = jobs.filter((todo) =>
+    if (keyWords.length > 0) {
+      filterJobs = filterJobs.filter((todo) =>
         todo.title.toString().toLowerCase().includes(keyWords.toLowerCase())
       );
     }
     if (searchPerk.length > 0) {
-      computedTodos = jobs.filter((j) =>
+      filterJobs = filterJobs.filter((j) =>
         j.perks.find((strp) =>
           searchPerk.some((value) =>
             strp.name.toLowerCase().includes(value.toLowerCase())
@@ -86,7 +88,7 @@ export default function Jobs() {
     }
 
     if (searchLocation.length > 0) {
-      computedTodos = jobs.filter((j) =>
+      filterJobs = filterJobs.filter((j) =>
         j.location.find((strl) =>
           searchLocation.some((value) =>
             strl.name.toLowerCase().includes(value.toLowerCase())
@@ -96,33 +98,20 @@ export default function Jobs() {
     }
 
     if (sortDate) {
-      computedTodos = jobs.sort((a, b) => new Date(a.date) - new Date(b.date));
+      filterJobs = filterJobs.sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      );
     }
 
-    if (!sortDate) {
-      jobs.sort((a, b) => new Date(b.date) - new Date(a.date));
-    }
     if (sortAphabetic) {
-      jobs.sort((a, b) => a.company.localeCompare(b.company));
-    }
-    if (!sortAphabetic) {
-      jobs.sort((a, b) => b.company.localeCompare(a.company));
+      filterJobs = filterJobs.sort((a, b) =>
+        a.company.localeCompare(b.company)
+      );
     }
 
-    if (
-      searchArea.length == 0 &&
-      searchSeniority.length == 0 &&
-      searchPerk.length == 0 &&
-      searchLocation.length == 0 &&
-      keyWords.length == 0
-    ) {
-      computedTodos = jobs;
-    }
-    console.log("comp", computedTodos);
-    setTotalTodos(computedTodos.length);
+    setTotalTodos(filterJobs.length);
 
-    //Current Page slice
-    return computedTodos.slice(
+    return filterJobs.slice(
       (currentPage - 1) * recordsPerPage,
       (currentPage - 1) * recordsPerPage + recordsPerPage
     );
@@ -143,66 +132,89 @@ export default function Jobs() {
   ) : jobs == "" ? (
     <Empty description="No jobs found" />
   ) : (
-    <Card>
-      <Row gutter={[12, 12]}>
-        <Col xs={24}>
-          <SelectFilter
-            data={jobs}
-            setSearchArea={setSearchArea}
-            setCurrentPage={setCurrentPage}
-          />
-        </Col>
-        <Col xs={24}>
-          <SelectFilterSeniority
-            data={jobs}
-            setSearchSeniority={setSearchSeniority}
-            setCurrentPage={setCurrentPage}
-          />
-        </Col>
-        <Col xs={24}>
-          <SelectFilterPerks
-            data={jobs}
-            setSearchPerk={setSearchPerk}
-            setCurrentPage={setCurrentPage}
-          />
-        </Col>
-        <Col xs={24}>
-          <SelectFilterLocation
-            data={jobs}
-            setSearchLocation={setSearchLocation}
-            setCurrentPage={setCurrentPage}
-          />
-        </Col>
-        <Col xs={24}>
-          <Input
-            placeholder="KeyWords"
-            onChange={(e) => setKeyWords(e.target.value)}
-            allowClear
-          />
-        </Col>
-        <Col xs={24}>
-          <Button onClick={() => setSortDate(!sortDate)}>Recent</Button>
-        </Col>
-        <Col xs={24}>
-          <Button onClick={() => setSortAphabetic(!sortAphabetic)}>
-            Company A-Z
-          </Button>
-        </Col>
+    <Row gutter={[12, 12]}>
+      <Col xs={24}>
+        <Row gutter={[12, 12]}>
+          <Col xs={24}>
+            <Title className="text-filter">Search by filters</Title>
+          </Col>
+          <Col xs={24} md={8} lg={4}>
+            <SelectFilter
+              data={jobs}
+              setSearchArea={setSearchArea}
+              setCurrentPage={setCurrentPage}
+            />
+          </Col>
+          <Col xs={24} md={8} lg={4}>
+            <SelectFilterSeniority
+              data={jobs}
+              setSearchSeniority={setSearchSeniority}
+              setCurrentPage={setCurrentPage}
+              searchSeniority={searchSeniority}
+            />
+          </Col>
+          <Col xs={24} md={8} lg={4}>
+            <SelectFilterLocation
+              data={jobs}
+              setSearchLocation={setSearchLocation}
+              setCurrentPage={setCurrentPage}
+            />
+          </Col>
+          <Col xs={24} md={8} lg={4}>
+            <SelectFilterPerks
+              data={jobs}
+              setSearchPerk={setSearchPerk}
+              setCurrentPage={setCurrentPage}
+            />
+          </Col>
+        </Row>
+        <Divider className="divider-style" />
+        <Row gutter={[12, 12]} justify="space-between">
+          <Col xs={24} lg={12} xl={10}>
+            <Input
+              placeholder="Title KeyWords"
+              onChange={(e) => setKeyWords(e.target.value)}
+              allowClear
+            />
+          </Col>
+          <Col xs={24} md={22} lg={12} xl={14}>
+            <Row gutter={[12,12]} justify="end">
+              <Col xs={8} md={3} lg={6}  xl={4}>
+                <Text>Order by:</Text>
+              </Col>
+              <Col xs={12} md={4} lg={6} xl={4}>
+                <Button onClick={() => setSortDate(!sortDate)} className="btn-recent">Recent</Button>
+              </Col>
+              <Col xs={12} md={4} lg={6} xl={4}>
+                <Button onClick={() => setSortAphabetic(!sortAphabetic)} className="btn-alphabetic" >
+                  Company A-Z
+                </Button>
+              </Col>
+              
+            </Row>
+          </Col>
+        </Row>
+      </Col>
 
-        <Col xs={24}>
-          <JobList data={todosData} />
-        </Col>
-        <Col xs={24}>
-          <Pagination
-            defaultCurrent={1}
-            total={totalTodos}
-            onChange={onChange}
-            responsive={true}
-            showTotal={(total) => `${total} items`}
-            pageSize={recordsPerPage}
-          />
-        </Col>
-      </Row>
-    </Card>
+      <Col xs={24}>
+        <Card>
+          <Row gutter={[12, 12]}>
+            <Col xs={24}>
+              <JobList data={JobsData} />
+            </Col>
+            <Col xs={24}>
+              <Pagination
+                defaultCurrent={1}
+                total={totalTodos}
+                onChange={onChange}
+                responsive={true}
+                showTotal={(total) => `${total} items`}
+                pageSize={recordsPerPage}
+              />
+            </Col>
+          </Row>
+        </Card>
+      </Col>
+    </Row>
   );
 }

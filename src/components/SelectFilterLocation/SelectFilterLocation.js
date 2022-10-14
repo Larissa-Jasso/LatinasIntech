@@ -36,7 +36,7 @@ export default function SelectFilterLocation(props) {
       style={{
         width: "100%",
       }}
-      placeholder="Please select an location option(s)"
+      placeholder="Select an location option(s)"
       onChange={handleChange}
     >
       {array.map((f, index) => {
