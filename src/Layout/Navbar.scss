@@ -16,6 +16,10 @@
 .second-header {
   font-weight: bold;
   align-items: flex-end;
+  vertical-align: middle !important;
+  line-height: 75px !important;
+  height: 75px !important;
+  
 }
 .menu {
   flex-direction: row-reverse !important;
@@ -32,4 +36,5 @@
   float: left;
   width: 100px !important;
   height: 100px !important;
+  margin-top: 7px !important;
 }

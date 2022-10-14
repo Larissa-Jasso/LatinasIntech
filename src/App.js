@@ -9,7 +9,7 @@ function App() {
       <Routes>     
       <Route  element={<Navbar/>}>       
         <Route path="/" element={<Jobs/>} />       
-        <Route path="/" element={<JobDetails/>} />       
+        <Route path="/@j-@d/:id" element={<JobDetails/>} />       
       </Route>
       </Routes>
     </Router>
