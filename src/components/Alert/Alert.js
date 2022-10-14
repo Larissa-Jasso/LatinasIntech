@@ -1,8 +1,7 @@
 import React from "react";
-import { Avatar, Card, Col, Image, Row } from "antd";
+import { Card, Col, Image, Row } from "antd";
 import "./Alert.scss"
 export default function Alert() {
-  const { Meta } = Card;
   return (
     <Card
     className="card-alert"

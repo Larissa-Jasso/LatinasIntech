@@ -1,5 +1,5 @@
 import { CaretDownOutlined } from "@ant-design/icons";
-import { Avatar, Button, Col, Image, Layout, Menu, Row } from "antd";
+import { Avatar, Button, Image, Layout, Menu, message } from "antd";
 import React from "react";
 import "./Navbar.scss";
 import { Outlet } from "react-router-dom";
@@ -11,7 +11,7 @@ export default function Navbar() {
       <Header className="first-header background-header">
         <Menu mode="horizontal" className="menu">
           <Menu.Item key="6">
-            <Button type="primary" className="btn-donate" size="small">
+            <Button type="primary" className="btn-donate" size="small" onClick={()=>message.success("Thanks!")}>
               Donate
             </Button>
           </Menu.Item>

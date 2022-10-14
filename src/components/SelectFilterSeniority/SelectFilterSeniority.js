@@ -2,7 +2,7 @@ import { Select } from 'antd';
 import React, { useEffect, useState } from 'react'
 
 export default function SelectFilterSeniority(props) {
-    const { data,setSearchSeniority,setCurrentPage,searchSeniority} = props;
+    const { data,setSearchSeniority,setCurrentPage} = props;
     const filter = [];
     const myObj = [];
     const [array, setArray] = useState([]);
@@ -23,7 +23,6 @@ export default function SelectFilterSeniority(props) {
     }, []);
   
     const handleChange =(value)=>{
-      // console.log(value);
       setSearchSeniority(value);
       setCurrentPage(1)
     }

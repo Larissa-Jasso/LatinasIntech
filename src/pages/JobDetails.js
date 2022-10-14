@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Avatar,
   Breadcrumb,
   Button,
   Card,
@@ -52,7 +53,7 @@ export default function JobDetails() {
   ) : data == "" ? (
     <Empty description="No information about this job" />
   ) : (
-    <Row gutter={[12, 12]} align="middle">
+    <Row gutter={[12, 12]} align="middle" justify="center">
       <Col xs={24}>
         <Breadcrumb>
           <Breadcrumb.Item>
@@ -73,8 +74,24 @@ export default function JobDetails() {
           text={data.time}
         />
       </Col>
-      <Col xs={24} md={12}>
-        <JobBenefits benefits={data.perks} />
+      <Col xs={24} md={12} style={{textAlign:"center"}}>
+        {data.perks == "" ? (
+          <Avatar
+            style={{ backgroundColor: "#00a2ae" }}
+            size={{
+              xs: 40,
+              sm: 40,
+              md: 60,
+              lg: 64,
+              xl: 80,
+              xxl: 70,
+            }}
+          >
+            No perks yet
+          </Avatar>
+        ) : (
+          <JobBenefits benefits={data.perks} />
+        )}
       </Col>
       <Col xs={24}>
         <Row gutter={[12, 12]}>

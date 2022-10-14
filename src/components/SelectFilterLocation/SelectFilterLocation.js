@@ -24,7 +24,6 @@ export default function SelectFilterLocation(props) {
   }, []);
 
   const handleChange = (value) => {
-    // console.log(value);
     setSearchLocation(value);
     setCurrentPage(1);
   };

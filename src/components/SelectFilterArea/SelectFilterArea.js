@@ -23,7 +23,6 @@ export default function SelectFilter(props) {
   }, []);
 
   const handleChange =(value)=>{
-    // console.log(value);
     setSearchArea(value);
     setCurrentPage(1)
   }

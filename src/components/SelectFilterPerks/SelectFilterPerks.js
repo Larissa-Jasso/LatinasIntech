@@ -9,7 +9,7 @@ export default function SelectFilterPerks(props) {
   const { Option } = Select;
   useEffect(() => {
     data.map((d) => {
-      d.perks.map((p, index) => {
+      d.perks.map((p) => {
         let image;
 
         if (p.name == "womenintecherg") {

@@ -1,7 +1,6 @@
 import { Card, Col, Empty, Pagination, Row, Skeleton, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import JobList from "../Job/JobList";
-import JobPreview from "../Job/JobPreview";
 
 export default function SimilarJobs(props) {
   const { area, id } = props;
@@ -67,6 +66,7 @@ export default function SimilarJobs(props) {
                 `${range[0]}-${range[1]} of ${total} items`
               }
               defaultPageSize={recordsPerPage}
+              responsive
             />
           </Col>
         </Row>
