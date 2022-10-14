@@ -19,7 +19,7 @@ export default function SelectFilterPerks(props) {
         } else if (p.name == "paidparentalleave") {
           image = "PPL.png";
         } else if (p.name == "latinxintech") {
-          image = "PLt.png";
+          image = "PLT.png";
         } else if (p.name == "lgbtqierg-2") {
           image = "PLGTBIQ.png";
         } else if (p.name == "unlimitedvacation") {
